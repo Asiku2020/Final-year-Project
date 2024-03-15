@@ -1,0 +1,34 @@
+def exit_car(reg_number):
+    global total_parking_slots  # Access the global variable
+
+    # Your code to remove the car from the database or any other necessary operation
+
+    # Increase the available parking slots
+    total_parking_slots += 1
+    print("Parking slot freed:", total_parking_slots)
+    # You can update the GUI to reflect the increased available parking slots if necessary
+
+
+
+def exit_window():
+    exit_top = tkinter.Toplevel(padx=20, pady=20)
+    exit_top.title('Exit Car')
+
+    reg_number_label = tkinter.Label(exit_top, text='Registration Number:')
+    reg_number_label.pack(padx=20, pady=10)
+
+    reg_number_entry = tkinter.Entry(exit_top)
+    reg_number_entry.pack()
+
+    def remove_car():
+        reg_number = reg_number_entry.get()
+
+        # Call the exit_car function with the registration number
+        exit_car(reg_number)
+
+        tkinter.messagebox.showinfo('Car Exit', f'Car with registration number {reg_number} has exited the parking lot.')
+
+        exit_top.destroy()
+
+    exit_button = tkinter.Button(exit_top, text='Exit Car', command=remove_car)
+    exit_button.pack(pady=10)
